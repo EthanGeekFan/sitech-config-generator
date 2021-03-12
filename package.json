@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^7.1.0",
-    "config-generator": "^1.0.1"
+    "commander": "^7.1.0"
   }
 }
