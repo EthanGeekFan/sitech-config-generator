@@ -10,6 +10,7 @@ program
     .option('-i, --new-implementation <implementation_id>', 'create a new implementation from template')
     .option('-s, --new-source <source_name>', 'create a new source module from template')
     .option('-m, --include-modules [modules...]', 'include modules when generating an implementation')
+    .option('-n, --tag-name <tag_name>', 'specify tag name')
     .parse(process.argv)
 
 let options = program.opts()
@@ -27,7 +28,9 @@ if (options.newImplementation) {
         fs.mkdirSync('./implementations')
     }
     let content = fs.readFileSync(path.join(__dirname, 'templates/implementation.js')).toString('utf-8')
-    // content = content.replace('${label}', options.newImplementation.replace('.js', ''))
+    if (options.tagName) {
+        content = content.replaceAll('${tag_name}', options.tagName)
+    }
     if (options.includeModules) {
         let paramStr = " "
         let sourceStr = "\n"
